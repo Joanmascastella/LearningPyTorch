@@ -7,7 +7,7 @@ if torch.cuda.is_available():
 #we can then calculate the gradients by calling the backward function
 #before we want to create the next iteration of our training loop we must call the zero function 
 #this will create a computatiopnal graph for gradient calculation
-    x = torch.rand(3, requires_grad=True)
+    x = torch.rand(3, requires_grad=True, device=device)
     print(x)
     y=x+2
     print(y)
@@ -16,7 +16,7 @@ if torch.cuda.is_available():
     # z=z.mean()
     print(z)
 
-    v = torch.tensor([0.1, 1.0, 0.001], dtype=torch.float32) # claculating the backward can only be done with scalar values or in other words
+    v = torch.tensor([0.1, 1.0, 0.001], dtype=torch.float32, device=device) # claculating the backward can only be done with scalar values or in other words
                                                             # values that have calculations
 
     z.backward(v) # calculate the gradient of z to the gradient of x
@@ -40,7 +40,7 @@ if torch.cuda.is_available():
 
     #example of a training loop where grad is used 
     #here we create tensor of 4 which requires grad
-    weights = torch.ones(4, requires_grad=True)
+    weights = torch.ones(4, requires_grad=True, device=device)
 
     #this is the training loop
     # value in range is the number of iterations I want
